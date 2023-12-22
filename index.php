@@ -1,6 +1,11 @@
 <?php
 $uri = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
+session_start();
+ini_set('session.gc_maxlifetime', 60*60*24);
+
+include_once __DIR__ . '/config/db.php';
+
 switch ($method | $uri) {
     case ($method == 'POST' && $uri == '/api/v1/user/register'):
         require __DIR__ . '/api/v1/user/register.php';
