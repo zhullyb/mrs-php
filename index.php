@@ -22,7 +22,7 @@ switch ($method | $uri) {
         require __DIR__ . '/utils/checkAdmin.php';
         require __DIR__ . '/api/v1/user/deleteUser.php';
         break;
-    case ($method == 'GET' && $uri == '/api/v1/movie/search'):
+    case ($method == 'GET' && preg_match('/^\/api\/v1\/movie\/search(\?.*)?$/',$uri)):
         require __DIR__ . '/api/v1/movie/search.php';
         break;
     case ($method == 'GET' && $uri == '/api/v1/movie/display'):
