@@ -18,7 +18,7 @@ if ($res->num_rows > 0) {
             'name' => $item['name'],
             'image' => $item['image'],
             'mid' => $item['mid'],
-            'rate' => (int) $rate
+            'rate' => round((float)$rate, 1),
         ];
     }
     echo json_encode([

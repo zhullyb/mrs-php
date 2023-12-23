@@ -27,7 +27,7 @@ if ($res->num_rows > 0) {
         }
         $data[] = [
             'name' => $item['name'],
-            'rate' => $rate[0]['rate'],
+            'rate' => round((float)$rate[0]['rate'], 1),
             'description' => $item['description'],
             'image' => $item['image'],
             'mid' => $item['mid'],
