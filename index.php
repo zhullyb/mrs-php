@@ -5,6 +5,7 @@ ini_set('session.gc_maxlifetime', 60*60*24);
 session_start();
 
 include_once __DIR__ . '/config/db.php';
+require_once __DIR__ . '/utils/isAdmin.php';
 
 switch ($method | $uri) {
     case ($method == 'POST' && $uri == '/api/v1/user/register'):
