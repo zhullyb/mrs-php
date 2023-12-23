@@ -63,6 +63,20 @@ switch ($method | $uri) {
         require __DIR__ . '/utils/checkLogin.php';
         require __DIR__ . '/api/v1/comment/edit.php';
         break;
+    case ($method == 'POST' && $uri == '/api/v1/uploadImage'):
+        require __DIR__ . '/api/v1/uploadImage.php';
+        break;
+    case ($method == 'GET' && preg_match('/^\/uploads\/.*$/',$uri)):
+        $filePath = __DIR__ . $uri;
+        if (file_exists($filePath)) {
+            $contentType = mime_content_type($filePath);
+            header('Content-Type: ' . $contentType);
+            readfile($filePath);
+            exit();
+        }
+        http_response_code(404);
+        echo json_encode(['error' => 'File not found']);
+        break;
     default:
         echo 'API Running';
         break;
