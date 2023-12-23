@@ -43,10 +43,11 @@ switch ($method | $uri) {
         require __DIR__ . '/utils/checkAdmin.php';
         require __DIR__ . '/api/v1/movie/add.php';
         break;
-    case ($method == 'GET' && $uri == '/api/v1/comment/getList'):
+    case ($method == 'GET' && preg_match('/^\/api\/v1\/comment\/getList(\?.*)?$/',$uri)):
         require __DIR__ . '/api/v1/comment/getList.php';
         break;
     case ($method == 'POST' && $uri == '/api/v1/comment/add'):
+        require __DIR__ . '/utils/checkLogin.php';
         require __DIR__ . '/api/v1/comment/add.php';
         break;
     case ($method == 'DELETE' && $uri == '/api/v1/comment/del'):
