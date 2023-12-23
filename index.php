@@ -17,7 +17,7 @@ switch ($method | $uri) {
     case ($method == 'GET' && $uri == '/api/v1/user/getUsers'):
         require __DIR__ . '/api/v1/user/getUsers.php';
         break;
-    case ($method == 'GET' && $uri == '/api/v1/user/deleteUser'):
+    case ($method == 'POST' && $uri == '/api/v1/user/deleteUser'):
         require __DIR__ . '/api/v1/user/deleteUser.php';
         break;
     case ($method == 'GET' && $uri == '/api/v1/movie/search'):
