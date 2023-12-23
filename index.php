@@ -50,8 +50,8 @@ switch ($method | $uri) {
         require __DIR__ . '/utils/checkLogin.php';
         require __DIR__ . '/api/v1/comment/add.php';
         break;
-    case ($method == 'DELETE' && $uri == '/api/v1/comment/del'):
-        require __DIR__ . '/utils/checkAdmin.php';
+    case ($method == 'DELETE' && preg_match('/^\/api\/v1\/comment\/del(\?.*)?$/',$uri)):
+        require __DIR__ . '/utils/checkLogin.php';
         require __DIR__ . '/api/v1/comment/del.php';
         break;
     case ($method == 'PUT' && $uri == '/api/v1/comment/edit'):
