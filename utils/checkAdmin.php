@@ -1,11 +1,5 @@
 <?php
-if (empty($_SESSION['uid'])) {
-    echo json_encode([
-        'code' => 401,
-        'msg' => '登陆过期',
-    ]);
-    exit();
-}
+require_once __DIR__ . '/checkLogin.php';
 
 if (!isAdmin($conn, $_SESSION['uid'])) {
     echo json_encode([
