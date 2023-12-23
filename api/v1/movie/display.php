@@ -8,14 +8,17 @@ if ($res->num_rows > 0) {
         if (empty($item['image'])) {
             $item['image'] = 'https://i0.wp.com/http.cat/404';
         }
-        if (empty($item['rate'])) {
-            $item['rate'] = 0;
+        $sql = "SELECT AVG(rate) FROM comments WHERE mid = {$item['mid']}";
+        $res = $conn->query($sql);
+        $rate = $res->fetch_row()[0];
+        if (empty($rate)) {
+            $rate = 0;
         }
         $data[] = [
             'name' => $item['name'],
-            'rate' => $item['rate'],
             'image' => $item['image'],
             'mid' => $item['mid'],
+            'rate' => (int) $rate
         ];
     }
     echo json_encode([
