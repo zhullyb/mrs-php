@@ -35,7 +35,7 @@ switch ($method | $uri) {
         require __DIR__ . '/utils/checkAdmin.php';
         require __DIR__ . '/api/v1/movie/update.php';
         break;
-    case ($method == 'POST' && $uri == '/api/v1/movie/del'):
+    case ($method == 'DELETE' && preg_match('/^\/api\/v1\/movie\/del(\?.*)?$/',$uri)):
         require __DIR__ . '/utils/checkAdmin.php';
         require __DIR__ . '/api/v1/movie/del.php';
         break;        
