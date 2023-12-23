@@ -1,8 +1,8 @@
 <?php
 $uri = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
-session_start();
 ini_set('session.gc_maxlifetime', 60*60*24);
+session_start();
 
 include_once __DIR__ . '/config/db.php';
 
