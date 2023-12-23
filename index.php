@@ -28,7 +28,7 @@ switch ($method | $uri) {
     case ($method == 'GET' && $uri == '/api/v1/movie/display'):
         require __DIR__ . '/api/v1/movie/display.php';
         break;
-    case ($method == 'GET' && $uri == '/api/v1/movie/getInfo'):
+    case ($method == 'GET' && preg_match('/^\/api\/v1\/movie\/getInfo(\?.*)?$/',$uri)):
         require __DIR__ . '/api/v1/movie/getInfo.php';
         break;
     case ($method == 'POST' && $uri == '/api/v1/movie/update'):
