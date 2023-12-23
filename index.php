@@ -55,6 +55,7 @@ switch ($method | $uri) {
         require __DIR__ . '/api/v1/comment/del.php';
         break;
     case ($method == 'PUT' && $uri == '/api/v1/comment/edit'):
+        require __DIR__ . '/utils/checkLogin.php';
         require __DIR__ . '/api/v1/comment/edit.php';
         break;
     default:
