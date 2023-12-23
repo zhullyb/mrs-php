@@ -13,15 +13,18 @@ $sql = "SELECT * FROM movieinfo WHERE mid = '$mid'";
 $res = $conn->query($sql);
 if ($res->num_rows > 0) {
     $result = $res->fetch_all(MYSQLI_ASSOC);
-    $data = [];
-    foreach ($result as $item) {
-        if (empty($item['image'])) {
-            $item['image'] = 'https://i0.wp.com/http.cat/404';
-        }
-        if (empty($item['rate'])) {
-            $item['rate'] = 0;
-        }
-        $data[] = $item;
+    $data = $result[0];
+    if (empty($data['image'])) {
+        $data['image'] = 'https://i0.wp.com/http.cat/404';
+    }
+    $sql = "SELECT AVG(rate) FROM comments WHERE mid = '$mid'";
+    $res = $conn->query($sql);
+    if ($res->num_rows > 0) {
+        $result = $res->fetch_all(MYSQLI_ASSOC);
+        $data['rate'] = $result[0]['AVG(rate)'];
+    } 
+    if (empty($data['rate'])) {
+        $data['rate'] = 0;
     }
     echo json_encode([
         'code' => 200,
