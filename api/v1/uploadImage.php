@@ -10,11 +10,9 @@ if ($_FILES['file']['error'] === UPLOAD_ERR_OK) {
     }
     $destination = $uploadFolder . $uniqueFileName;
 
-    $baseURL = 'http://localhost:8080/';
-
     if (move_uploaded_file($tempFilePath, $destination)) {
         echo json_encode([
-            'url' => $baseURL . $destination,
+            'url' => '/' . $destination,
         ]);
     } else {
         echo json_encode([
