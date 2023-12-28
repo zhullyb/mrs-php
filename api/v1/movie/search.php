@@ -1,5 +1,5 @@
 <?php
-$keyword = $_GET['keyword'];
+$keyword = $conn->real_escape_string($_GET['keyword']);
 
 if (empty($keyword)) {
     echo json_encode([

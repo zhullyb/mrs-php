@@ -15,7 +15,11 @@ $res = $conn->query($sql);
 if ($res->num_rows > 0) {
     $row = $res->fetch_assoc();
     if ($row['uid'] == $uid || isAdmin($conn, $uid)) {
-        $sql2 = "UPDATE `comments` SET comment = '$data[content]', rate = '$data[rate]' WHERE cid = '$data[cid]'";
+        $content = $conn->real_escape_string($data['content']);
+        $rate = $conn->real_escape_string($data['rate']);
+        $cid = $conn->real_escape_string($data['cid']);
+
+        $sql2 = "UPDATE `comments` SET comment = '$content', rate = '$rate' WHERE cid = '$cid'";
         if ($conn->query($sql2)) {
             echo json_encode([
                 'code' => 200,

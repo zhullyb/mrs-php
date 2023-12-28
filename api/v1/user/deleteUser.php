@@ -9,7 +9,8 @@ if (empty($data['uid'])) {
     exit();
 }
 
-$sql = "DELETE FROM userinfo WHERE uid = $data[uid]";
+$uid = $conn->real_escape_string($data['uid']);
+$sql = "DELETE FROM userinfo WHERE uid = '$uid'";
 if ($conn->query($sql) === TRUE) {
     echo json_encode([
         'code' => 200,

@@ -11,7 +11,8 @@ if (empty($data['username']) || empty($data['password'])) {
 
 $hashed_password = password_hash($data['password'], PASSWORD_DEFAULT);
 
-$sql = "SELECT * FROM userinfo WHERE username = '$data[username]'";
+$username = $conn->real_escape_string($data['username']);
+$sql = "SELECT * FROM userinfo WHERE username = '$username'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();

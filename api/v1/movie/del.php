@@ -1,5 +1,5 @@
 <?php
-$mid = $_GET['mid'];
+$mid = $conn->real_escape_string($_GET['mid']);
 
 if (empty($mid)) {
     echo json_encode([

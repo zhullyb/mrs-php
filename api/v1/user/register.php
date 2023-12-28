@@ -19,7 +19,9 @@ if ($result->num_rows > 0) {
 }
 
 $hashed_password = password_hash($data['password'], PASSWORD_DEFAULT);
-$sql = "INSERT INTO userinfo (username, password, email) VALUES ('$data[username]', '$hashed_password', '$data[email]')";
+$username = $conn->real_escape_string($data['username']);
+$email = $conn->real_escape_string($data['email']);
+$sql = "INSERT INTO userinfo (username, password, email) VALUES ('$username', '$hashed_password', '$email')";
 if ($conn->query($sql) === TRUE) {
     $uid = $conn->insert_id;
     $_SESSION['uid'] = $uid;

@@ -11,7 +11,11 @@ if (empty($data['mid']) || empty($data['content']) || empty($data['rate'])) {
     exit();
 }
     
-$sql = "INSERT INTO comments (mid, uid, comment, rate) VALUES ($data[mid], $uid, '$data[content]', $data[rate])";
+$mid = $conn->real_escape_string($data['mid']);
+$comment = $conn->real_escape_string($data['content']);
+$rate = $conn->real_escape_string($data['rate']);
+
+$sql = "INSERT INTO comments (mid, uid, comment, rate) VALUES ('$mid', $uid, '$comment', '$rate')";
 if ($conn->query($sql) === TRUE) {
     echo json_encode([
         'code' => 200,

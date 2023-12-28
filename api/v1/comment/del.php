@@ -1,5 +1,5 @@
 <?php
-$cid = $_GET['cid'];
+$cid = $conn->real_escape_string($_GET['cid']);
 $uid = $_SESSION['uid'];
 
 if (empty($cid)) {
