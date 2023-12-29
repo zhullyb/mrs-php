@@ -9,19 +9,23 @@ if (empty($data['mid']) || empty($data['name']) || empty($data['description'])) 
     exit();
 }
 
-$name = $conn->real_escape_string($data['name']);
-$image = $conn->real_escape_string($data['image']);
-$director = $conn->real_escape_string($data['director']);
-$screenwriter = $conn->real_escape_string($data['screenwriter']);
-$mainActor = $conn->real_escape_string($data['mainActor']);
-$type = $conn->real_escape_string($data['type']);
-$website = $conn->real_escape_string($data['website']);
-$country = $conn->real_escape_string($data['country']);
-$language = $conn->real_escape_string($data['language']);
-$releaseDate = $conn->real_escape_string($data['releaseDate']);
-$length = $conn->real_escape_string($data['length']);
-$description = $conn->real_escape_string($data['description']);
-$mid = $conn->real_escape_string($data['mid']);
+$escapeWithEmptyCheck = function($conn, $key, $data) {
+    return isset($data[$key]) ? $conn->real_escape_string($data[$key]) : '';
+};
+
+$name = $escapeWithEmptyCheck($conn, 'name', $data);
+$image = $escapeWithEmptyCheck($conn, 'image', $data);
+$director = $escapeWithEmptyCheck($conn, 'director', $data);
+$screenwriter = $escapeWithEmptyCheck($conn, 'screenwriter', $data);
+$mainActor = $escapeWithEmptyCheck($conn, 'mainActor', $data);
+$type = $escapeWithEmptyCheck($conn, 'type', $data);
+$website = $escapeWithEmptyCheck($conn, 'website', $data);
+$country = $escapeWithEmptyCheck($conn, 'country', $data);
+$language = $escapeWithEmptyCheck($conn, 'language', $data);
+$releaseDate = $escapeWithEmptyCheck($conn, 'releaseDate', $data);
+$length = $escapeWithEmptyCheck($conn, 'length', $data);
+$description = $escapeWithEmptyCheck($conn, 'description', $data);
+$mid = $escapeWithEmptyCheck($conn, 'mid', $data);
 
 $sql = "UPDATE movieinfo SET name = '$name', image = '$image', director = '$director', screenwriter = '$screenwriter', mainActor = '$mainActor', type = '$type', website = '$website', country = '$country', language = '$language', releaseDate = '$releaseDate', length = '$length', description = '$description' WHERE mid = '$mid'";
 if ($conn->query($sql) === TRUE) {
