@@ -6,7 +6,15 @@ if (empty($data['cid']) || empty($data['content']) || empty($data['rate'])) {
         'msg' => '参数错误',
     ]);
     exit();
-} 
+}
+
+if ($data['rate'] < 1 || $data['rate'] > 10) {
+    echo json_encode([
+        'code' => 400,
+        'msg' => '评分不合法',
+    ]);
+    exit();
+}
 
 $uid = $_SESSION['uid'];
 

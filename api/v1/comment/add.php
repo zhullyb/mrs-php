@@ -10,6 +10,14 @@ if (empty($data['mid']) || empty($data['content']) || empty($data['rate'])) {
     ]);
     exit();
 }
+
+if ($data['rate'] < 1 || $data['rate'] > 10) {
+    echo json_encode([
+        'code' => 400,
+        'msg' => '评分不合法',
+    ]);
+    exit();
+}
     
 $mid = $conn->real_escape_string($data['mid']);
 $comment = $conn->real_escape_string($data['content']);
